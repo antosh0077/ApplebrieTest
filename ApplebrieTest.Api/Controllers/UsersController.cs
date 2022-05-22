@@ -49,7 +49,7 @@ namespace ApplebrieTest.Api.Controllers
             return await _userService.GetByIdAsync(id);            
         }
 
-        /
+        
         [HttpPost]
         [Route("Create")]
         public async Task<Response> Create(CreateUserDTO userDTO)
