@@ -37,7 +37,9 @@ namespace ApplebrieTest.Sercices.Implementations
                     FirstName = u.FirstName,
                     LastName = u.LastName,
                     Email = u.Email,
-                    UserType = u.UserType
+                    UserType = u.UserType,
+                    UserName = u.UserName,
+                    LoginCount = u.LoginCount
                 })
                 .Skip((request.PageNumber - 1) * request.PageSize).Take(request.PageSize)
                 .ToListAsync();
@@ -52,7 +54,9 @@ namespace ApplebrieTest.Sercices.Implementations
                     FirstName = u.FirstName,
                     LastName = u.LastName,
                     Email = u.Email,
-                    UserType = u.UserType
+                    UserType = u.UserType,
+                    UserName = u.UserName,
+                    LoginCount = u.LoginCount
                 })
                 .Skip((request.PageNumber - 1) * request.PageSize).Take(request.PageSize)
                 .ToListAsync();
@@ -73,7 +77,9 @@ namespace ApplebrieTest.Sercices.Implementations
                     FirstName = u.FirstName,
                     LastName = u.LastName,
                     Email = u.Email,
-                    UserType = u.UserType
+                    UserType = u.UserType,
+                    UserName = u.UserName,
+                    LoginCount = u.LoginCount
                 })
                 .Skip((request.PageNumber - 1) * request.PageSize).Take(request.PageSize)
                 .ToListAsync();
@@ -89,7 +95,9 @@ namespace ApplebrieTest.Sercices.Implementations
                     FirstName = u.FirstName,
                     LastName = u.LastName,
                     Email = u.Email,
-                    UserType = u.UserType
+                    UserType = u.UserType,
+                    UserName = u.UserName,
+                    LoginCount = u.LoginCount
                 })
                 .Skip((request.PageNumber - 1) * request.PageSize).Take(request.PageSize)
                 .ToListAsync();
@@ -177,7 +185,8 @@ namespace ApplebrieTest.Sercices.Implementations
                 LastName = u.LastName,
                 Email = u.Email,
                 UserType = u.UserType,
-                LoginCount = u.LoginCount
+                LoginCount = u.LoginCount,
+                UserName = u.UserName
             }).FirstOrDefaultAsync(u => u.Id == id);
 
             return new Response<UserDTO>(user);
