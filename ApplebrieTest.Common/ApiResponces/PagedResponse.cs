@@ -28,7 +28,7 @@ namespace ApplebrieTest.Common.ApiResponces
         }
 
         public static PagedResponse<List<T>> CreatePagedReponse<T>(List<T> pagedData, PagedRequest request, int totalRecords)
-        {
+        {            
             var respose = new PagedResponse<List<T>>(pagedData, request.PageNumber, request.PageSize);
             var totalPages = ((double)totalRecords / (double)request.PageSize);
             respose.TotalPages = Convert.ToInt32(Math.Ceiling(totalPages));
