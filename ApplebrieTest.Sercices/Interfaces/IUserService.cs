@@ -16,6 +16,7 @@ namespace ApplebrieTest.Sercices.Interfaces
         bool Exists(long? id);
 
         Task<PagedResponse<List<UserDTO>>> GetAll(PagedRequest request);
+        Task<PagedResponse<List<UserDTO>>> GetAllFiltered(FilterRequest request);
 
         Task<PagedResponse<List<UserDTO>>> GetAllWhichLoggedMoreThan2Times(PagedRequest request);
 

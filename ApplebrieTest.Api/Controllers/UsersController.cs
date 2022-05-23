@@ -25,10 +25,20 @@ namespace ApplebrieTest.Api.Controllers
 
         [HttpGet]
         [Route("GetAll")]
-        public async Task<PagedResponse<List<UserDTO>>> Get([FromQuery] PagedRequest request)
+        public async Task<PagedResponse<List<UserDTO>>> GetAll([FromQuery] PagedRequest request)
         {
            //await _userService.SeedRandomUsers(500);
             var res = await _userService.GetAll(request);
+            HttpContext.Session.SetString("Users", JsonConvert.SerializeObject(res));
+            return res;
+        }
+
+        [HttpGet]
+        [Route("GetAllFiltered")]
+        public async Task<PagedResponse<List<UserDTO>>> GetAllFiltered([FromQuery] FilterRequest request)
+        {
+            //await _userService.SeedRandomUsers(500);
+            var res = await _userService.GetAllFiltered(request);
             HttpContext.Session.SetString("Users", JsonConvert.SerializeObject(res));
             return res;
         }
