@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ApplebrieTest.Common\ApplebrieTest.Common.csproj" />
     <ProjectReference Include="..\ApplebrieTest.Datas\ApplebrieTest.Datas.csproj" />
     <ProjectReference Include="..\ApplebrieTest.Sercices\ApplebrieTest.Sercices.csproj" />
   </ItemGroup>

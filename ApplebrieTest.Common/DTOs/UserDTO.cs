@@ -1,7 +1,7 @@
 ﻿using ApplebrieTest.Datas.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace ApplebrieTest.Datas.DTOs
+namespace ApplebrieTest.Common.DTOs
 {
     public class UserDTO
     {
@@ -35,6 +35,7 @@ namespace ApplebrieTest.Datas.DTOs
             LastName = user.LastName;
             Email = user.Email;
             UserType = user.UserType;
+            UserName = user.UserName;
             LoginCount = user.LoginCount;
         }
     }

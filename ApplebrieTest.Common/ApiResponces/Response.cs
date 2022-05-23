@@ -1,4 +1,4 @@
-﻿namespace ApplebrieTest.Datas.ApiResponces
+﻿namespace ApplebrieTest.Common.ApiResponces
 {
     public class Response
     {

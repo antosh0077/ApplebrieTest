@@ -1,7 +1,7 @@
 ﻿using ApplebrieTest.Datas.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace ApplebrieTest.Datas.DTOs
+namespace ApplebrieTest.Common.DTOs
 {
     public class UserUpdateDTO
     {
@@ -17,11 +17,11 @@ namespace ApplebrieTest.Datas.DTOs
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        public UserType UserType { get; set; }        
+        public UserType UserType { get; set; }
 
         [Required]
         public string UserName { get; set; }
 
-        
+
     }
 }

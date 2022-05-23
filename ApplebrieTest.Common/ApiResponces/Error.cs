@@ -5,7 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ApplebrieTest.Datas.ApiResponces
+namespace ApplebrieTest.Common.ApiResponces
 {
     public class Error
     {

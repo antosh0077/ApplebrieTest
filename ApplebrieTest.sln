@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplebrieTest.MVC", "ApplebrieTest.MVC\ApplebrieTest.MVC.csproj", "{131FBED1-96DD-44DA-BE94-26A3DF999181}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplebrieTest.Datas", "ApplebrieTest.Datas\ApplebrieTest.Datas.csproj", "{89E4CB9E-9929-4CDB-8B3E-435F82070A62}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplebrieTest.Sercices", "ApplebrieTest.Sercices\ApplebrieTest.Sercices.csproj", "{E0A35252-A079-4DE0-B27D-CF22BA6B0085}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplebrieTest.Api", "ApplebrieTest.Api\ApplebrieTest.Api.csproj", "{DCCB5223-48DE-48C4-AB46-84D9A56A9A49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplebrieTest.Api", "ApplebrieTest.Api\ApplebrieTest.Api.csproj", "{DCCB5223-48DE-48C4-AB46-84D9A56A9A49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplebrieTest.Common", "ApplebrieTest.Common\ApplebrieTest.Common.csproj", "{6BC74562-E532-4D5C-A7BD-3395B14C4654}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{131FBED1-96DD-44DA-BE94-26A3DF999181}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{131FBED1-96DD-44DA-BE94-26A3DF999181}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{131FBED1-96DD-44DA-BE94-26A3DF999181}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{131FBED1-96DD-44DA-BE94-26A3DF999181}.Release|Any CPU.Build.0 = Release|Any CPU
 		{89E4CB9E-9929-4CDB-8B3E-435F82070A62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{89E4CB9E-9929-4CDB-8B3E-435F82070A62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89E4CB9E-9929-4CDB-8B3E-435F82070A62}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -33,6 +29,10 @@ Global
 		{DCCB5223-48DE-48C4-AB46-84D9A56A9A49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCCB5223-48DE-48C4-AB46-84D9A56A9A49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCCB5223-48DE-48C4-AB46-84D9A56A9A49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BC74562-E532-4D5C-A7BD-3395B14C4654}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BC74562-E532-4D5C-A7BD-3395B14C4654}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BC74562-E532-4D5C-A7BD-3395B14C4654}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BC74562-E532-4D5C-A7BD-3395B14C4654}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

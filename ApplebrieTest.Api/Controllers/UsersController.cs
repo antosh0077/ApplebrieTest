@@ -1,6 +1,6 @@
-﻿using ApplebrieTest.Datas.ApiRequest;
-using ApplebrieTest.Datas.ApiResponces;
-using ApplebrieTest.Datas.DTOs;
+﻿using ApplebrieTest.Common.ApiRequest;
+using ApplebrieTest.Common.ApiResponces;
+using ApplebrieTest.Common.DTOs;
 using ApplebrieTest.Datas.Models;
 using ApplebrieTest.Sercices.Interfaces;
 using Microsoft.AspNetCore.Identity;
@@ -15,7 +15,7 @@ namespace ApplebrieTest.Api.Controllers
     {
         private readonly IUserService _userService;
         private readonly SignInManager<AppUser> _signInManager;
-
+        
         public UsersController(IUserService userService, SignInManager<AppUser> signInManager)
         {
             _userService = userService;
@@ -27,6 +27,7 @@ namespace ApplebrieTest.Api.Controllers
         [Route("GetAll")]
         public async Task<PagedResponse<List<UserDTO>>> Get([FromQuery] PagedRequest request)
         {
+           //await _userService.SeedRandomUsers(500);
             var res = await _userService.GetAll(request);
             HttpContext.Session.SetString("Users", JsonConvert.SerializeObject(res));
             return res;
@@ -81,7 +82,7 @@ namespace ApplebrieTest.Api.Controllers
                 await _signInManager.PasswordSignInAsync(loginDTO.Email, loginDTO.Password, loginDTO.RememberMe, false);
             if (!result.Succeeded)
             {
-                return ApplebrieTest.Datas.ApiResponces.Response.Failure(result.ToString());
+                return ApplebrieTest.Common.ApiResponces.Response.Failure(result.ToString());
             }
             else
             {

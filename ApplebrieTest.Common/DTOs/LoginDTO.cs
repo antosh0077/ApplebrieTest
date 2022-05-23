@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ApplebrieTest.Datas.DTOs
+namespace ApplebrieTest.Common.DTOs
 {
     public class UserLoginDTO
     {

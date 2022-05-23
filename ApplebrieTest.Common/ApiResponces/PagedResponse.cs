@@ -1,13 +1,6 @@
-﻿using ApplebrieTest.Datas.ApiRequest;
-using ApplebrieTest.Datas.DTOs;
-using ApplebrieTest.Datas.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ApplebrieTest.Common.ApiRequest;
 
-namespace ApplebrieTest.Datas.ApiResponces
+namespace ApplebrieTest.Common.ApiResponces
 {
     //public class PaginatedUsersResponce : Response
     //{
@@ -18,12 +11,12 @@ namespace ApplebrieTest.Datas.ApiResponces
     {
         public int PageNumber { get; set; }
 
-        public int PageSize { get; set; }        
+        public int PageSize { get; set; }
 
         public int TotalPages { get; set; }
 
         public int TotalRecords { get; set; }
-        
+
 
         public PagedResponse(T data, int pageNumber, int pageSize)
         {
@@ -38,9 +31,9 @@ namespace ApplebrieTest.Datas.ApiResponces
         {
             var respose = new PagedResponse<List<T>>(pagedData, request.PageNumber, request.PageSize);
             var totalPages = ((double)totalRecords / (double)request.PageSize);
-            respose.TotalPages = Convert.ToInt32(Math.Ceiling(totalPages));            
+            respose.TotalPages = Convert.ToInt32(Math.Ceiling(totalPages));
             respose.TotalRecords = totalRecords;
             return respose;
         }
-    }    
+    }
 }
