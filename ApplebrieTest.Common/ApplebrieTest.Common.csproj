@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ApplebrieTest.Common\ApplebrieTest.Common.csproj" />
     <ProjectReference Include="..\ApplebrieTest.Datas\ApplebrieTest.Datas.csproj" />
   </ItemGroup>
 

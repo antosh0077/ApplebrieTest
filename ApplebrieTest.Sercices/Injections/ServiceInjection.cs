@@ -1,4 +1,6 @@
-﻿using ApplebrieTest.Sercices.Implementations;
+﻿using ApplebrieTest.Datas.Data;
+using ApplebrieTest.Datas.Models;
+using ApplebrieTest.Sercices.Implementations;
 using ApplebrieTest.Sercices.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -14,8 +16,8 @@ namespace ApplebrieTest.Sercices.Injections
         public static IServiceCollection _AddServiceInjections(this IServiceCollection services)
         {
             
-            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserService, UserService>();            
             return services;
-        }
+        }        
     }
 }

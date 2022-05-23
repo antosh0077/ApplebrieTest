@@ -10,6 +10,4 @@ namespace ApplebrieTest.Datas.Models
         public int LoginCount { get; set; }
         public UserType UserType { get; set; }
     }
-
-    
 }

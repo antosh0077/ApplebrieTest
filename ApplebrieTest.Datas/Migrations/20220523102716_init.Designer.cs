@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApplebrieTest.Datas.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220522135014_init")]
+    [Migration("20220523102716_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

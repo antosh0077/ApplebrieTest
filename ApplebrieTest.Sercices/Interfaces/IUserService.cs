@@ -1,6 +1,6 @@
-﻿using ApplebrieTest.Datas.ApiRequest;
-using ApplebrieTest.Datas.ApiResponces;
-using ApplebrieTest.Datas.DTOs;
+﻿using ApplebrieTest.Common.ApiRequest;
+using ApplebrieTest.Common.ApiResponces;
+using ApplebrieTest.Common.DTOs;
 using ApplebrieTest.Datas.Models;
 
 namespace ApplebrieTest.Sercices.Interfaces

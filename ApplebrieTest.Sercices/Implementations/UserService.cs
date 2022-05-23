@@ -1,7 +1,7 @@
-﻿using ApplebrieTest.Datas.ApiRequest;
-using ApplebrieTest.Datas.ApiResponces;
+﻿using ApplebrieTest.Common.ApiRequest;
+using ApplebrieTest.Common.ApiResponces;
 using ApplebrieTest.Datas.Data;
-using ApplebrieTest.Datas.DTOs;
+using ApplebrieTest.Common.DTOs;
 using ApplebrieTest.Datas.Models;
 using ApplebrieTest.Sercices.Interfaces;
 using Microsoft.AspNetCore.Identity;
@@ -31,16 +31,7 @@ namespace ApplebrieTest.Sercices.Implementations
             if (request.FilterByUserType == UserType.Undefined)
             {
                 users = await _context.Users
-                .Select(u => new UserDTO()
-                {
-                    Id = u.Id,
-                    FirstName = u.FirstName,
-                    LastName = u.LastName,
-                    Email = u.Email,
-                    UserType = u.UserType,
-                    UserName = u.UserName,
-                    LoginCount = u.LoginCount
-                })
+                .Select(u => new UserDTO(u))
                 .Skip((request.PageNumber - 1) * request.PageSize).Take(request.PageSize)
                 .ToListAsync();
             }
@@ -48,16 +39,7 @@ namespace ApplebrieTest.Sercices.Implementations
             {
                 users = await _context.Users
                 .Where(u => u.UserType == request.FilterByUserType)
-                .Select(u => new UserDTO()
-                {
-                    Id = u.Id,
-                    FirstName = u.FirstName,
-                    LastName = u.LastName,
-                    Email = u.Email,
-                    UserType = u.UserType,
-                    UserName = u.UserName,
-                    LoginCount = u.LoginCount
-                })
+                .Select(u => new UserDTO(u))
                 .Skip((request.PageNumber - 1) * request.PageSize).Take(request.PageSize)
                 .ToListAsync();
             }
@@ -71,16 +53,7 @@ namespace ApplebrieTest.Sercices.Implementations
             {
                 users = await _context.Users
                 .Where(u => u.LoginCount > 2)
-                .Select(u => new UserDTO()
-                {
-                    Id = u.Id,
-                    FirstName = u.FirstName,
-                    LastName = u.LastName,
-                    Email = u.Email,
-                    UserType = u.UserType,
-                    UserName = u.UserName,
-                    LoginCount = u.LoginCount
-                })
+                .Select(u => new UserDTO(u))
                 .Skip((request.PageNumber - 1) * request.PageSize).Take(request.PageSize)
                 .ToListAsync();
             }
@@ -89,16 +62,7 @@ namespace ApplebrieTest.Sercices.Implementations
                 users = await _context.Users
                 .Where(u => u.UserType == request.FilterByUserType)
                 .Where(u => u.LoginCount > 2)
-                .Select(u => new UserDTO()
-                {
-                    Id = u.Id,
-                    FirstName = u.FirstName,
-                    LastName = u.LastName,
-                    Email = u.Email,
-                    UserType = u.UserType,
-                    UserName = u.UserName,
-                    LoginCount = u.LoginCount
-                })
+                .Select(u => new UserDTO(u))
                 .Skip((request.PageNumber - 1) * request.PageSize).Take(request.PageSize)
                 .ToListAsync();
             }
@@ -230,7 +194,7 @@ namespace ApplebrieTest.Sercices.Implementations
         public async Task<Response> UpdateLoginCountAsync(AppUser user)
         {
             if (user != null)
-            {                
+            {
                 user.LoginCount++;
                 var result = await _userManager.UpdateAsync(user);
                 if (!result.Succeeded)
@@ -267,7 +231,7 @@ namespace ApplebrieTest.Sercices.Implementations
                 }
 
                 await CreateAsync(user);
-            }            
+            }
         }
     }
 }

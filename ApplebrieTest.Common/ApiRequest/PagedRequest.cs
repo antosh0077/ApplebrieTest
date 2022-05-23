@@ -1,11 +1,6 @@
 ﻿using ApplebrieTest.Datas.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ApplebrieTest.Datas.ApiRequest
+namespace ApplebrieTest.Common.ApiRequest
 {
     public class PagedRequest
     {
@@ -20,6 +15,6 @@ namespace ApplebrieTest.Datas.ApiRequest
             PageNumber = 1;
             PageSize = 10;
             FilterByUserType = UserType.Undefined;
-        }   
-    }    
+        }
+    }
 }
