@@ -28,20 +28,19 @@ namespace ApplebrieTest.Sercices.Implementations
         public async Task<PagedResponse<List<UserDTO>>> GetAll(PagedRequest request)
         {
             var users = new List<UserDTO>();
+            var preRequest = _context.Users
+                .Select(u => new UserDTO(u))
+                .Skip((request.PageNumber - 1) * request.PageSize).Take(request.PageSize);
+
             if (request.FilterByUserType == UserType.Undefined)
             {
-                users = await _context.Users
-                .Select(u => new UserDTO(u))
-                .Skip((request.PageNumber - 1) * request.PageSize).Take(request.PageSize)
-                .ToListAsync();
+                users = await preRequest.ToListAsync();
             }
             else
             {
-                users = await _context.Users
-                .Where(u => u.UserType == request.FilterByUserType)
-                .Select(u => new UserDTO(u))
-                .Skip((request.PageNumber - 1) * request.PageSize).Take(request.PageSize)
-                .ToListAsync();
+                users = await preRequest                
+                    .Where(u => u.UserType == request.FilterByUserType)         
+                    .ToListAsync();
             }
             return PagedResponse<List<UserDTO>>.CreatePagedReponse<UserDTO>(users, request, _context.Users.Count());
         }
@@ -49,23 +48,21 @@ namespace ApplebrieTest.Sercices.Implementations
         public async Task<PagedResponse<List<UserDTO>>> GetAllWhichLoggedMoreThan2Times(PagedRequest request)
         {
             var users = new List<UserDTO>();
-            if (request.FilterByUserType == UserType.Undefined)
-            {
-                users = await _context.Users
+            var preRequest = _context.Users
                 .Where(u => u.LoginCount > 2)
                 .Select(u => new UserDTO(u))
-                .Skip((request.PageNumber - 1) * request.PageSize).Take(request.PageSize)
-                .ToListAsync();
+                .Skip((request.PageNumber - 1) * request.PageSize).Take(request.PageSize);
+
+            if (request.FilterByUserType == UserType.Undefined)
+            {
+                users = await preRequest.ToListAsync();
             }
             else
             {
-                users = await _context.Users
-                .Where(u => u.UserType == request.FilterByUserType)
-                .Where(u => u.LoginCount > 2)
-                .Select(u => new UserDTO(u))
-                .Skip((request.PageNumber - 1) * request.PageSize).Take(request.PageSize)
-                .ToListAsync();
-            }
+                users = await preRequest
+                    .Where(u => u.UserType == request.FilterByUserType)
+                    .ToListAsync();
+            }           
 
             return PagedResponse<List<UserDTO>>.CreatePagedReponse<UserDTO>(users, request, _context.Users.Count());
         }
@@ -84,7 +81,7 @@ namespace ApplebrieTest.Sercices.Implementations
 
         public bool Any()
         {
-            return _userManager.Users.Any();
+            return _context.Users.Any();
         }
 
         public async Task<Response> CreateAsync(CreateUserDTO userDTO)
@@ -115,18 +112,14 @@ namespace ApplebrieTest.Sercices.Implementations
 
         public async Task<Response> DeleteAsync(long? id)
         {
-            AppUser user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == id);
+            AppUser user = await _context.Users?.FirstOrDefaultAsync(u => u.Id == id);
             if (user != null)
             {
-                var result = await _userManager.DeleteAsync(user);
-                if (!result.Succeeded)
+                _context.Remove(user);
+                var result = await _context.SaveChangesAsync();
+                if (result > 0)
                 {
-                    var errors = new List<Error>();
-                    foreach (var error in result.Errors)
-                    {
-                        errors.Add(new Error(error.Description));
-                    }
-                    return Response.Failure(errors);
+                    return Response.Failure("User not deleted");
                 }
                 return Response.Success();
             }
@@ -135,23 +128,15 @@ namespace ApplebrieTest.Sercices.Implementations
 
         public bool Exists(long? id)
         {
-            var userExist = (_userManager.Users?.Any(u => u.Id == id)).GetValueOrDefault();
             return (_context.Users?.Any(e => e.Id == id)).GetValueOrDefault();
 
         }
 
         public async Task<Response<UserDTO>> GetByIdAsync(long? id)
         {
-            var user = await _userManager.Users.Select(u => new UserDTO()
-            {
-                Id = u.Id,
-                FirstName = u.FirstName,
-                LastName = u.LastName,
-                Email = u.Email,
-                UserType = u.UserType,
-                LoginCount = u.LoginCount,
-                UserName = u.UserName
-            }).FirstOrDefaultAsync(u => u.Id == id);
+            var user = await _context.Users
+                .Select(u => new UserDTO(u))
+                .FirstOrDefaultAsync(u => u.Id == id);
 
             return new Response<UserDTO>(user);
         }
@@ -165,7 +150,7 @@ namespace ApplebrieTest.Sercices.Implementations
 
         public async Task<Response> UpdateAsync(UserUpdateDTO updatedUser)
         {
-            AppUser user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == updatedUser.Id);
+            AppUser user = await _context.Users.FirstOrDefaultAsync(u => u.Id == updatedUser.Id);
 
             if (user != null)
             {
@@ -175,15 +160,11 @@ namespace ApplebrieTest.Sercices.Implementations
                 user.Email = updatedUser.Email;
                 user.UserName = updatedUser.Email;
 
-                var result = await _userManager.UpdateAsync(user);
-                if (!result.Succeeded)
+                _context.Update(user);
+                var result = await _context.SaveChangesAsync();
+                if (result > 0)
                 {
-                    var errors = new List<Error>();
-                    foreach (var error in result.Errors)
-                    {
-                        errors.Add(new Error(error.Description));
-                    }
-                    return Response.Failure(errors);
+                    return Response.Failure("User not updated");
                 }
                 return Response.Success();
             }
@@ -196,15 +177,11 @@ namespace ApplebrieTest.Sercices.Implementations
             if (user != null)
             {
                 user.LoginCount++;
-                var result = await _userManager.UpdateAsync(user);
-                if (!result.Succeeded)
+                _context.Update(user);
+                var result = await _context.SaveChangesAsync();
+                if (result > 0)
                 {
-                    var errors = new List<Error>();
-                    foreach (var error in result.Errors)
-                    {
-                        errors.Add(new Error(error.Description));
-                    }
-                    return Response.Failure(errors);
+                    return Response.Failure("User login count not updated");
                 }
                 return Response.Success();
             }
