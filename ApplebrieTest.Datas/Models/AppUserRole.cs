@@ -2,7 +2,5 @@
 
 namespace ApplebrieTest.Datas.Models
 {
-    public class AppUserRole : IdentityRole<long> { }
-
-    
+    public class AppUserRole : IdentityRole<long> { }    
 }
